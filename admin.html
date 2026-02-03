@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LEVDIN Admin</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Admin Login</h2>
+
+  <input type="email" id="adminEmail" placeholder="Email">
+  <input type="password" id="adminPassword" placeholder="Password">
+  <button onclick="login()">Login</button>
+
+  <div id="dashboard" style="display:none;">
+    <h3>Bookings</h3>
+    <div id="bookings"></div>
+  </div>
+</div>
+
+<script>
+async function login(){
+  const { error } = await supabase.auth.signInWithPassword({
+    email: document.getElementById("adminEmail").value,
+    password: document.getElementById("adminPassword").value
+  });
+
+  if(error){
+    alert("Login Failed");
+  } else {
+    loadBookings();
+  }
+}
+
+async function loadBookings(){
+  document.getElementById("dashboard").style.display = "block";
+
+  const { data } = await supabase
+    .from('bookings')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  let html = "";
+
+  data.forEach(row => {
+    html += `
+      <div class="card">
+        <strong>${row.name}</strong><br>
+        ${row.phone}<br>
+        ${row.project_type}<br>
+        Status: ${row.status}
+      </div>
+    `;
+  });
+
+  document.getElementById("bookings").innerHTML = html;
+}
+</script>
+
+</body>
+</html>

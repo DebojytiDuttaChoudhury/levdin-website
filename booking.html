@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Consultation - LEVDIN</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Book Appointment</h2>
+
+  <form id="bookingForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="text" id="phone" placeholder="Phone" required>
+    <input type="email" id="email" placeholder="Email">
+
+    <select id="project_type">
+      <option>Residential</option>
+      <option>Commercial</option>
+      <option>Custom Furniture</option>
+      <option>IT Infrastructure</option>
+    </select>
+
+    <button type="submit">Book Now</button>
+  </form>
+</div>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const { error } = await supabase
+    .from('bookings')
+    .insert([{
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      project_type: document.getElementById("project_type").value
+    }]);
+
+  if (error) {
+    alert("Error booking appointment");
+  } else {
+    alert("Booked Successfully!");
+    window.location.href = "https://wa.me/917001064180";
+  }
+});
+</script>
+
+</body>
+</html>
