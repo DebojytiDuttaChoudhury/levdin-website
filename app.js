@@ -1,4 +1,13 @@
-const supabaseUrl = "https://retxvksxtcedlewjxkmh.supabase.co";
-const supabaseKey = "sb_publishable_zInp5lVCLC8u4EBFdwYGuA_0bC-joaV";
+const faders = document.querySelectorAll('.fade-up');
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+window.addEventListener('scroll', () => {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  faders.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+
+    if(sectionTop < triggerBottom){
+      section.classList.add('show');
+    }
+  });
+});

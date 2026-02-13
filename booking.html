@@ -2,52 +2,45 @@
 <html>
 <head>
   <title>Book Consultation - LEVDIN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js"></script>
 </head>
 <body>
 
-<div class="form-container">
-  <h2>Book Appointment</h2>
+<a href="index.html" class="home-btn">← Home</a>
 
-  <form id="bookingForm">
-    <input type="text" id="name" placeholder="Full Name" required>
-    <input type="text" id="phone" placeholder="Phone" required>
-    <input type="email" id="email" placeholder="Email">
+<div class="booking-wrapper">
 
-    <select id="project_type">
-      <option>Residential</option>
-      <option>Commercial</option>
-      <option>Custom Furniture</option>
-      <option>IT Infrastructure</option>
-    </select>
+  <div class="booking-left">
+    <h1>Private Design Consultation</h1>
+    <p>
+      Share your vision with us.  
+      Our design experts will connect with you personally  
+      to craft a space that reflects elegance and intelligence.
+    </p>
+  </div>
 
-    <button type="submit">Book Now</button>
-  </form>
+  <div class="booking-right">
+    <form class="booking-form">
+      <h2>Book Appointment</h2>
+
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Phone Number" required>
+      <input type="email" placeholder="Email Address">
+
+      <select>
+        <option>Residential</option>
+        <option>Commercial</option>
+        <option>Custom Furniture</option>
+        <option>IT Infrastructure</option>
+      </select>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
 </div>
-
-<script>
-document.getElementById("bookingForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const { error } = await supabase
-    .from('bookings')
-    .insert([{
-      name: document.getElementById("name").value,
-      phone: document.getElementById("phone").value,
-      email: document.getElementById("email").value,
-      project_type: document.getElementById("project_type").value
-    }]);
-
-  if (error) {
-    alert("Error booking appointment");
-  } else {
-    alert("Booked Successfully!");
-    window.location.href = "https://wa.me/917001064180";
-  }
-});
-</script>
 
 </body>
 </html>

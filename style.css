@@ -8,26 +8,25 @@ body {
   font-family: 'Poppins', sans-serif;
   background: #0a0a0a;
   color: #fff;
-  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
+
 .navbar {
   position: fixed;
   width: 100%;
+  padding: 20px 8%;
   display: flex;
   justify-content: space-between;
-  padding: 25px 8%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  z-index: 100;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
 }
 
-.logo {
-  font-size: 20px;
-  letter-spacing: 3px;
-  font-weight: 600;
-  color: gold;
+.logo img {
+  height: 45px;
 }
 
 nav a {
@@ -36,17 +35,23 @@ nav a {
   text-decoration: none;
   font-size: 14px;
   letter-spacing: 1px;
+  transition: 0.3s;
 }
 
-/* HERO */
+nav a:hover {
+  color: white;
+}
+
+/* ================= HERO ================= */
+
 .hero {
   height: 100vh;
   background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   position: relative;
+  text-align: center;
 }
 
 .hero::after {
@@ -54,18 +59,19 @@ nav a {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.95));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.95));
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
+  animation: fadeIn 1.8s ease;
 }
 
 .hero h1 {
-  font-size: 65px;
-  letter-spacing: 4px;
+  font-size: 60px;
   color: gold;
+  letter-spacing: 4px;
 }
 
 .hero p {
@@ -76,7 +82,7 @@ nav a {
 
 .btn-primary {
   display: inline-block;
-  margin-top: 35px;
+  margin-top: 30px;
   padding: 14px 35px;
   border: 1px solid gold;
   color: gold;
@@ -89,34 +95,37 @@ nav a {
   color: #000;
 }
 
-/* SECTIONS */
+/* ================= SECTION ================= */
+
 .section {
-  padding: 120px 10%;
+  padding: 140px 10%;
   text-align: center;
 }
 
 .section h2 {
   color: gold;
-  margin-bottom: 30px;
-  font-size: 32px;
+  margin-bottom: 25px;
+  font-size: 30px;
 }
 
 .section-text {
-  max-width: 800px;
+  max-width: 750px;
   margin: auto;
-  opacity: 0.8;
+  opacity: 0.85;
+  line-height: 1.7;
 }
 
 .dark {
   background: #111;
 }
 
-/* GRID */
+/* ================= GRID ================= */
+
 .grid {
-  margin-top: 60px;
+  margin-top: 70px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 40px;
+  gap: 50px;
 }
 
 .card {
@@ -126,13 +135,19 @@ nav a {
   transition: 0.4s;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  border-color: gold;
-  box-shadow: 0 0 20px rgba(255,215,0,0.4);
+.card h3 {
+  margin-bottom: 15px;
+  color: gold;
 }
 
-/* FOOTER */
+.card:hover {
+  transform: translateY(-12px);
+  border-color: gold;
+  box-shadow: 0 0 25px rgba(255,215,0,0.35);
+}
+
+/* ================= FOOTER ================= */
+
 footer {
   padding: 40px;
   text-align: center;
@@ -140,7 +155,8 @@ footer {
   color: #777;
 }
 
-/* WHATSAPP */
+/* ================= WHATSAPP ================= */
+
 .whatsapp {
   position: fixed;
   bottom: 25px;
@@ -150,4 +166,158 @@ footer {
   border-radius: 50%;
   text-decoration: none;
   font-size: 18px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* ================= HOME BUTTON ================= */
+
+.home-btn {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  color: gold;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ================= BOOKING PAGE ================= */
+
+.booking-wrapper {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  padding: 120px 10%;
+  gap: 60px;
+}
+
+.booking-left {
+  flex: 1;
+}
+
+.booking-left h1 {
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.booking-left p {
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+.booking-right {
+  flex: 1;
+}
+
+.booking-form {
+  background: #1a1a1a;
+  padding: 40px;
+  border: 1px solid rgba(255,215,0,0.3);
+}
+
+.booking-form h2 {
+  margin-bottom: 20px;
+  color: gold;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.booking-form button {
+  width: 100%;
+  padding: 14px;
+  background: gold;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.booking-form button:hover {
+  background: white;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-card {
+  width: 400px;
+  padding: 40px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,215,0,0.3);
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,215,0,0.2);
+}
+
+.admin-card h2 {
+  color: gold;
+  margin-bottom: 15px;
+}
+
+.admin-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.admin-card button {
+  width: 100%;
+  padding: 12px;
+  background: gold;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-card button:hover {
+  background: white;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+  .booking-wrapper {
+    flex-direction: column;
+    padding: 120px 8%;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
 }
