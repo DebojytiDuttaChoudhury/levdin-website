@@ -1,14 +1,18 @@
 /* =========================
-   SUPABASE CONNECTION
+   SAFE SUPABASE INIT
 ========================= */
 
-const supabaseUrl = "https://nreakvneqlmjsdcqwqnk.supabase.co";
-const supabaseKey = "sb_publishable_KuU24INkn7yNftJ0pGoSVw_dZS9svQo";
+let supabase = null;
 
-const supabase = window.supabase.createClient(
-  supabaseUrl,
-  supabaseKey
-);
+if (window.supabase) {
+  const supabaseUrl = "https://nreakvneqlmjsdcqwqnk.supabase.co";
+  const supabaseKey = "sb_publishable_KuU24INkn7yNftJ0pGoSVw_dZS9svQo";
+
+  supabase = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+  );
+}
 
 /* =========================
    BOOKING SYSTEM
@@ -16,7 +20,7 @@ const supabase = window.supabase.createClient(
 
 const bookingForm = document.getElementById("bookingForm");
 
-if (bookingForm) {
+if (bookingForm && supabase) {
   bookingForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -45,6 +49,8 @@ if (bookingForm) {
 ========================= */
 
 async function login() {
+  if (!supabase) return;
+
   const { error } = await supabase.auth.signInWithPassword({
     email: document.getElementById("adminEmail").value,
     password: document.getElementById("adminPassword").value
@@ -58,6 +64,7 @@ async function login() {
 }
 
 async function loadBookings() {
+  if (!supabase) return;
 
   document.getElementById("loginSection").style.display = "none";
   document.getElementById("dashboard").style.display = "block";
@@ -84,30 +91,31 @@ async function loadBookings() {
 }
 
 async function logout() {
+  if (!supabase) return;
   await supabase.auth.signOut();
   location.reload();
 }
 
 /* =========================
-   SCROLL ANIMATION
+   SMOOTH SCROLL ANIMATION
 ========================= */
 
-const faders = document.querySelectorAll('.fade-up');
+document.addEventListener("DOMContentLoaded", function () {
 
-function revealSections() {
-  const triggerBottom = window.innerHeight * 0.85;
+  const faders = document.querySelectorAll(".fade-up");
 
-  faders.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
+  if (!faders.length) return;
 
-    if (sectionTop < triggerBottom) {
-      section.classList.add('show');
-    }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, {
+    threshold: 0.15
   });
-}
 
-// Run once on page load
-window.addEventListener('load', revealSections);
+  faders.forEach(el => observer.observe(el));
 
-// Also run on scroll
-window.addEventListener('scroll', revealSections);
+});
