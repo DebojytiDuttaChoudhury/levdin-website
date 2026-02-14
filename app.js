@@ -94,14 +94,20 @@ async function logout() {
 
 const faders = document.querySelectorAll('.fade-up');
 
-window.addEventListener('scroll', () => {
+function revealSections() {
   const triggerBottom = window.innerHeight * 0.85;
 
   faders.forEach(section => {
     const sectionTop = section.getBoundingClientRect().top;
 
-    if(sectionTop < triggerBottom){
+    if (sectionTop < triggerBottom) {
       section.classList.add('show');
     }
   });
-});
+}
+
+// Run when scrolling
+window.addEventListener('scroll', revealSections);
+
+// Run once on page load
+window.addEventListener('load', revealSections);
