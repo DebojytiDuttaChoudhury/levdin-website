@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -12,13 +16,19 @@
 
 <div class="admin-wrapper">
 
-  <div class="admin-card">
+  <div class="admin-card" id="loginSection">
     <h2>LEVDIN Admin Panel</h2>
     <p>Secure dashboard access for internal management.</p>
 
-    <input type="email" placeholder="Admin Email">
-    <input type="password" placeholder="Password">
-    <button>Login</button>
+    <input type="email" id="adminEmail" placeholder="Admin Email">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="dashboard" style="display:none; width:100%; padding:40px;">
+    <h2 style="color:gold;">Bookings</h2>
+    <button onclick="logout()">Logout</button>
+    <div id="bookings" style="margin-top:30px;"></div>
   </div>
 
 </div>

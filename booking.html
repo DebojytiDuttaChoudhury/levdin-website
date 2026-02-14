@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -22,14 +26,14 @@
   </div>
 
   <div class="booking-right">
-    <form class="booking-form">
+    <form class="booking-form" id="bookingForm">
       <h2>Book Appointment</h2>
 
-      <input type="text" placeholder="Full Name" required>
-      <input type="text" placeholder="Phone Number" required>
-      <input type="email" placeholder="Email Address">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+      <input type="email" id="email" placeholder="Email Address">
 
-      <select>
+      <select id="project_type">
         <option>Residential</option>
         <option>Commercial</option>
         <option>Custom Furniture</option>
