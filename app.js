@@ -106,8 +106,8 @@ function revealSections() {
   });
 }
 
-// Run when scrolling
-window.addEventListener('scroll', revealSections);
-
 // Run once on page load
 window.addEventListener('load', revealSections);
+
+// Also run on scroll
+window.addEventListener('scroll', revealSections);
